@@ -66,15 +66,43 @@ AI-Powered-Medical-Diagnosis/
 ├── variables.tf                 # Input variables
 ├── outputs.tf                   # Output values
 ├── terraform.tfvars.example     # Example configuration
+├── deploy.sh                    # Automated deployment script
+├── destroy.sh                   # Automated cleanup script
 ├── .gitignore                   # Git ignore rules
 ├── medical_diagnosis_lambda.py  # Lambda function code
 ├── medical_requirements.txt     # Python dependencies
 └── README.md                    # This file
 ```
 
-## 🚀 Quick Start (5 Minutes)
+## 🚀 Quick Start
 
-### Step 1: Clone and Configure
+### Option 1: Automated Deployment (Recommended - 2 Minutes)
+
+The easiest way to deploy using our automated script:
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd AI-Powered-Medical-Diagnosis
+
+# Run the deployment script
+./deploy.sh
+```
+
+The script will automatically:
+- ✅ Check prerequisites (AWS CLI, Terraform)
+- ✅ Verify AWS credentials
+- ✅ Create terraform.tfvars if needed
+- ✅ Initialize Terraform
+- ✅ Show deployment plan
+- ✅ Deploy to AWS
+- ✅ Display application URL and access information
+
+### Option 2: Manual Deployment (5 Minutes)
+
+For more control over the deployment process:
+
+#### Step 1: Clone and Configure
 
 ```bash
 # Clone the repository
@@ -88,14 +116,14 @@ cp terraform.tfvars.example terraform.tfvars
 nano terraform.tfvars
 ```
 
-### Step 2: Initialize Terraform
+#### Step 2: Initialize Terraform
 
 ```bash
 # Initialize Terraform (downloads required providers)
 terraform init
 ```
 
-### Step 3: Review Deployment Plan
+#### Step 3: Review Deployment Plan
 
 ```bash
 # See what resources will be created
@@ -257,6 +285,24 @@ terraform output
 ```
 
 ### Destroy Infrastructure
+
+#### Option 1: Automated Cleanup (Recommended)
+
+Use the automated script for safe destruction with multiple confirmations:
+
+```bash
+./destroy.sh
+```
+
+The script will:
+- 🔍 Show all resources that will be destroyed
+- ⚠️  Display multiple safety warnings
+- 💾 Create backup of Terraform state
+- 🗑️  Destroy all AWS resources
+- ✅ Verify destruction
+- 🧹 Optionally clean up local files
+
+#### Option 2: Manual Cleanup
 
 ```bash
 # Remove all AWS resources
