@@ -150,9 +150,9 @@ resource "aws_lambda_function_url" "medical_diagnosis_url" {
   cors {
     allow_credentials = false
     allow_origins     = var.cors_allow_origins
-    allow_methods     = ["GET", "POST", "OPTIONS"]
-    allow_headers     = ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key", "X-Amz-Security-Token"]
-    expose_headers    = ["Content-Type"]
+    allow_methods     = ["*"]
+    allow_headers     = ["*"]
+    expose_headers    = ["*"]
     max_age          = 86400
   }
 }
@@ -207,41 +207,41 @@ resource "aws_cloudwatch_metric_alarm" "lambda_duration" {
   }
 }
 
-# ============================================================================
-# OUTPUTS
-# ============================================================================
+# # ============================================================================
+# # OUTPUTS
+# # ============================================================================
 
-output "lambda_function_name" {
-  description = "Name of the Lambda function"
-  value       = aws_lambda_function.medical_diagnosis.function_name
-}
+# output "lambda_function_name" {
+#   description = "Name of the Lambda function"
+#   value       = aws_lambda_function.medical_diagnosis.function_name
+# }
 
-output "lambda_function_arn" {
-  description = "ARN of the Lambda function"
-  value       = aws_lambda_function.medical_diagnosis.arn
-}
+# output "lambda_function_arn" {
+#   description = "ARN of the Lambda function"
+#   value       = aws_lambda_function.medical_diagnosis.arn
+# }
 
-output "lambda_function_url" {
-  description = "Public URL of the Lambda function"
-  value       = aws_lambda_function_url.medical_diagnosis_url.function_url
-}
+# output "lambda_function_url" {
+#   description = "Public URL of the Lambda function"
+#   value       = aws_lambda_function_url.medical_diagnosis_url.function_url
+# }
 
-output "lambda_role_arn" {
-  description = "ARN of the Lambda execution role"
-  value       = aws_iam_role.lambda_execution_role.arn
-}
+# output "lambda_role_arn" {
+#   description = "ARN of the Lambda execution role"
+#   value       = aws_iam_role.lambda_execution_role.arn
+# }
 
-output "cloudwatch_log_group" {
-  description = "Name of the CloudWatch log group"
-  value       = aws_cloudwatch_log_group.lambda_logs.name
-}
+# output "cloudwatch_log_group" {
+#   description = "Name of the CloudWatch log group"
+#   value       = aws_cloudwatch_log_group.lambda_logs.name
+# }
 
-output "deployment_region" {
-  description = "AWS region where resources are deployed"
-  value       = data.aws_region.current.name
-}
+# output "deployment_region" {
+#   description = "AWS region where resources are deployed"
+#   value       = data.aws_region.current.name
+# }
 
-output "aws_account_id" {
-  description = "AWS Account ID"
-  value       = data.aws_caller_identity.current.account_id
-}
+# output "aws_account_id" {
+#   description = "AWS Account ID"
+#   value       = data.aws_caller_identity.current.account_id
+# }
